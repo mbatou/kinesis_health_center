@@ -14,8 +14,8 @@ const advantages = [
   },
   {
     icon: HeartHandshake,
-    title: "Circuit VIP",
-    desc: "Un parcours privilégié, pensé pour la discrétion, le confort et la sérénité.",
+    title: "Accompagnement personnalisé",
+    desc: "Un parcours pensé pour chaque patient, dans le respect de la confidentialité et du confort.",
   },
   {
     icon: ShieldCheck,

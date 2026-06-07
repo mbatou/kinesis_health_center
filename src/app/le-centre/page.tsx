@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Crown, Check } from "lucide-react";
+import { HeartHandshake, Check } from "lucide-react";
 import Section from "@/components/Section";
 import SectionTitle from "@/components/SectionTitle";
 import EcgDivider from "@/components/EcgDivider";
@@ -11,7 +11,7 @@ import { centre } from "@/content/centre";
 export const metadata: Metadata = {
   title: "Le centre",
   description:
-    "Kinesis Réadaptation, centre médical de référence à Dakar : excellence médicale, innovation technologique, démarche qualité et circuit VIP pensé pour la discrétion et le confort.",
+    "Kinesis Réadaptation, centre médical de référence à Dakar : excellence médicale, innovation technologique, démarche qualité et accompagnement personnalisé, dans le respect de la confidentialité et du confort.",
   alternates: { canonical: "/le-centre" },
 };
 
@@ -64,25 +64,25 @@ export default function LeCentrePage() {
         </div>
       </Section>
 
-      {/* VIP circuit */}
+      {/* Personalized care */}
       <Section className="bg-surface">
         <div className="grid items-center gap-10 md:grid-cols-2">
           <Reveal>
             <div>
               <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-kinesis-violet/5 text-kinesis-violet">
-                <Crown size={24} aria-hidden="true" />
+                <HeartHandshake size={24} aria-hidden="true" />
               </span>
-              <h2 className="mt-4 text-2xl font-bold text-kinesis-violet md:text-3xl">
-                {centre.vip.title}
+              <h2 className="mt-4 text-h2 text-kinesis-ink">
+                {centre.accompagnement.title}
               </h2>
               <p className="mt-3 text-base leading-relaxed text-kinesis-grey">
-                {centre.vip.desc}
+                {centre.accompagnement.desc}
               </p>
             </div>
           </Reveal>
           <Reveal delay={0.05}>
             <ul className="space-y-4 rounded-2xl border border-line bg-white p-6 shadow-sm">
-              {centre.vip.points.map((point) => (
+              {centre.accompagnement.points.map((point) => (
                 <li key={point} className="flex items-center gap-3">
                   <Check size={18} className="shrink-0 text-kinesis-green" />
                   <span className="text-sm text-kinesis-ink">{point}</span>

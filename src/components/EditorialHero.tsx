@@ -22,8 +22,9 @@ export default function EditorialHero() {
           <EcgAccent width={120} className="mt-6" />
           <p className="mt-6 max-w-prose text-lg text-kinesis-grey">
             De la cardiologie à la réadaptation, Kinesis Réadaptation réunit vos
-            soins en un seul parcours — pensé pour la discrétion et le confort,
-            premier centre privé de médecine vasculaire de la place.
+            soins en un seul parcours — un accompagnement personnalisé, dans le
+            respect de la confidentialité et du confort, premier centre privé de
+            médecine vasculaire de la place.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Button href="/contact" size="lg">

@@ -5,8 +5,8 @@ Project rules and conventions. Read before working on this repo.
 ## What this is
 
 Showcase website (site vitrine) for **Kinesis Réadaptation**, a multidisciplinary
-medical center in Dakar opening June 2026. French-only for v1. Premium / VIP
-positioning, mobile-first.
+medical center in Dakar opening June 2026. French-only for v1. Premium
+positioning — personalized care & comfort, sub-regional reach — mobile-first.
 
 **Art direction (locked, v2): editorial premium + the animated "fil de soin"
 signature.** Aim: the calmest, most expensive-feeling, most recognizable health
