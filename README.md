@@ -4,7 +4,12 @@ Showcase website for **Kinesis Réadaptation**, a multidisciplinary medical
 center in Dakar (opening June 2026). French-only (v1), mobile-first, premium /
 VIP positioning.
 
-> Project conventions and design tokens live in [`CLAUDE.md`](./CLAUDE.md).
+**Art direction:** editorial premium + the animated **"fil de soin"** — a
+continuous violet→green thread (`FilDeSoin.tsx`) that draws itself down the left
+gutter as you scroll and links the four care poles. Desktop animates it on scroll;
+mobile shows static per-section accents; `prefers-reduced-motion` draws it at once.
+
+> Project conventions, design tokens, and anti-patterns live in [`CLAUDE.md`](./CLAUDE.md).
 
 ## Stack
 

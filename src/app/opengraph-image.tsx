@@ -3,7 +3,6 @@ import { site } from "@/content/site";
 
 // Dynamically generated Open Graph image (1200x630 PNG) — brand-aligned,
 // avoids shipping a static asset. Used for social sharing previews.
-export const runtime = "edge";
 export const alt = `${site.name} — ${site.tagline}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";

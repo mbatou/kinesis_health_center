@@ -5,6 +5,7 @@ import { site } from "@/content/site";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
+import FilDeSoin from "@/components/FilDeSoin";
 import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
@@ -42,7 +43,10 @@ export default function RootLayout({
       <body className="flex min-h-screen flex-col bg-white font-body text-kinesis-ink antialiased">
         <JsonLd />
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="relative flex-1">
+          <FilDeSoin />
+          {children}
+        </main>
         <Footer />
         <WhatsAppFloat />
       </body>

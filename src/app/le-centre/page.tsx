@@ -4,6 +4,7 @@ import Section from "@/components/Section";
 import SectionTitle from "@/components/SectionTitle";
 import EcgDivider from "@/components/EcgDivider";
 import CtaBand from "@/components/CtaBand";
+import MediaFrame from "@/components/MediaFrame";
 import Reveal from "@/components/Reveal";
 import { centre } from "@/content/centre";
 
@@ -101,14 +102,11 @@ export default function LeCentrePage() {
             subtitle="Les photos de nos locaux et équipements seront ajoutées prochainement."
           />
         </Reveal>
-        <div className="mt-8 grid gap-4 sm:grid-cols-3">
+        <div className="mt-10 grid gap-5 sm:grid-cols-3">
           {[0, 1, 2].map((i) => (
-            <div
-              key={i}
-              className="flex aspect-[4/3] items-center justify-center rounded-2xl border border-dashed border-line bg-surface text-sm text-kinesis-grey-soft"
-            >
-              Photo à venir
-            </div>
+            <Reveal key={i} delay={i * 0.06}>
+              <MediaFrame ratio="aspect-[4/3]" badge="Photo du centre à venir" />
+            </Reveal>
           ))}
         </div>
       </Section>

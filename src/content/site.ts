@@ -4,7 +4,7 @@
 
 export const site = {
   name: "Kinesis Réadaptation",
-  tagline: "L'excellence médicale au service de votre santé",
+  tagline: "Un seul lieu. Toutes vos spécialités.",
   description:
     "Centre médical pluridisciplinaire à Dakar : cardiologie, médecine vasculaire, réadaptation, explorations fonctionnelles et consultations spécialisées. Un circuit VIP pensé pour la discrétion et le confort.",
 

@@ -1,7 +1,8 @@
 // The 4 "pôles" (specialty hubs). Source: questionnaire Dr Diack.
 // Structured so each pôle can later be split into its own page without a refactor.
 //
-// `icon` is the name of a lucide-react icon (resolved in PoleCard).
+// `num` drives the editorial 01→04 index and the "fil de soin" nodes.
+// `icon` is a lucide-react icon name, kept for optional future use.
 
 export type Specialty = {
   name: string;
@@ -10,15 +11,18 @@ export type Specialty = {
 
 export type Pole = {
   id: string;
+  num: string;
   title: string;
   icon: string;
   intro: string;
   specialties: Specialty[];
 };
 
+// The order of poles = the care journey / the order of the "fil de soin".
 export const poles: Pole[] = [
   {
     id: "cardiovasculaire",
+    num: "01",
     title: "Pôle cardiovasculaire",
     icon: "HeartPulse",
     intro:
@@ -40,6 +44,7 @@ export const poles: Pole[] = [
   },
   {
     id: "explorations",
+    num: "02",
     title: "Pôle explorations",
     icon: "Activity",
     intro: "Plateau d'explorations fonctionnelles pour un diagnostic précis.",
@@ -60,7 +65,8 @@ export const poles: Pole[] = [
   },
   {
     id: "readaptation",
-    title: "Pôle réadaptation & bien-être",
+    num: "03",
+    title: "Réadaptation & bien-être",
     icon: "PersonStanding",
     intro: "Rééducation, mobilité et bien-être, dans un cadre confortable.",
     specialties: [
@@ -80,7 +86,8 @@ export const poles: Pole[] = [
   },
   {
     id: "consultations",
-    title: "Pôle consultations spécialisées",
+    num: "04",
+    title: "Consultations spécialisées",
     icon: "Stethoscope",
     intro: "Un large éventail de consultations spécialisées en un seul lieu.",
     specialties: [

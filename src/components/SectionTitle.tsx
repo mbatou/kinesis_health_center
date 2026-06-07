@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import Kicker from "./Kicker";
 
 type Props = {
   kicker?: string;
@@ -8,7 +9,7 @@ type Props = {
   className?: string;
 };
 
-// Standard section heading: small green kicker + title + optional subtitle.
+// Standard section heading: green uppercase kicker + editorial title + subtitle.
 export default function SectionTitle({
   kicker,
   title,
@@ -19,18 +20,10 @@ export default function SectionTitle({
   const alignment = align === "center" ? "text-center mx-auto" : "text-left";
   return (
     <div className={`max-w-2xl ${alignment} ${className}`}>
-      {kicker && (
-        <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-kinesis-green">
-          {kicker}
-        </p>
-      )}
-      <h2 className="text-2xl font-bold leading-tight text-kinesis-violet md:text-3xl">
-        {title}
-      </h2>
+      {kicker && <Kicker className="mb-3">{kicker}</Kicker>}
+      <h2 className="text-h2 text-balance text-kinesis-ink">{title}</h2>
       {subtitle && (
-        <p className="mt-3 text-base leading-relaxed text-kinesis-grey">
-          {subtitle}
-        </p>
+        <p className="mt-4 max-w-prose text-kinesis-grey">{subtitle}</p>
       )}
     </div>
   );

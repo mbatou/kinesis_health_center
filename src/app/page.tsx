@@ -1,12 +1,10 @@
 import { ShieldCheck, Sparkles, HeartHandshake } from "lucide-react";
-import Hero from "@/components/Hero";
+import EditorialHero from "@/components/EditorialHero";
 import Section from "@/components/Section";
 import SectionTitle from "@/components/SectionTitle";
-import PoleCard from "@/components/PoleCard";
+import PoleIndex from "@/components/PoleIndex";
 import CtaBand from "@/components/CtaBand";
-import EcgDivider from "@/components/EcgDivider";
 import Reveal from "@/components/Reveal";
-import { poles } from "@/content/specialites";
 
 const advantages = [
   {
@@ -29,25 +27,19 @@ const advantages = [
 export default function Home() {
   return (
     <>
-      <Hero />
+      <EditorialHero />
 
-      <EcgDivider className="py-6" />
-
-      {/* 4 pôles preview */}
-      <Section className="pt-6 md:pt-10">
+      {/* Numbered index of the 4 poles */}
+      <Section>
         <Reveal>
           <SectionTitle
             kicker="Nos spécialités"
-            title="Quatre pôles, une prise en charge complète"
-            subtitle="De la cardiologie à la réadaptation, nos pôles couvrent l'ensemble de votre parcours de soin."
+            title="Quatre pôles, un même parcours de soin"
+            subtitle="De la cardiologie aux consultations spécialisées, suivez le fil — chaque pôle est une étape de votre prise en charge."
           />
         </Reveal>
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {poles.map((pole, i) => (
-            <Reveal key={pole.id} delay={i * 0.06}>
-              <PoleCard pole={pole} />
-            </Reveal>
-          ))}
+        <div className="mt-12">
+          <PoleIndex />
         </div>
       </Section>
 
@@ -60,16 +52,14 @@ export default function Home() {
             subtitle="Kinesis Réadaptation allie innovation technologique et expertise humaine, premier centre privé de médecine vasculaire de la place."
           />
         </Reveal>
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
           {advantages.map((adv, i) => (
             <Reveal key={adv.title} delay={i * 0.06}>
-              <div className="flex h-full flex-col rounded-2xl border border-line bg-white p-6 shadow-sm">
+              <div className="flex h-full flex-col rounded-2xl border border-line bg-white p-7">
                 <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-kinesis-green/10 text-kinesis-green">
                   <adv.icon size={24} aria-hidden="true" />
                 </span>
-                <h3 className="mt-4 text-lg font-bold text-kinesis-violet">
-                  {adv.title}
-                </h3>
+                <h3 className="mt-5 text-pole text-kinesis-ink">{adv.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-kinesis-grey">
                   {adv.desc}
                 </p>

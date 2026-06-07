@@ -10,11 +10,9 @@ import Container from "./Container";
 import Button from "./Button";
 
 const navItems = [
-  { href: "/", label: "Accueil" },
   { href: "/le-centre", label: "Le centre" },
   { href: "/specialites", label: "Nos spécialités" },
   { href: "/equipe", label: "Notre équipe" },
-  { href: "/contact", label: "Contact" },
 ];
 
 export default function Header() {
@@ -65,8 +63,8 @@ export default function Header() {
               {item.label}
             </Link>
           ))}
-          <Button href="/contact" size="md">
-            Prendre contact
+          <Button href="/contact" variant="outline" size="md">
+            Contact
           </Button>
         </nav>
 

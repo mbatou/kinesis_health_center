@@ -4,7 +4,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #1e2230; /* kinesis.ink */
+  --foreground: #26215c; /* kinesis.ink */
 }
 
 @layer base {
@@ -19,6 +19,7 @@
     background: var(--background);
     font-family: var(--font-body), "Segoe UI", system-ui, -apple-system,
       sans-serif;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
