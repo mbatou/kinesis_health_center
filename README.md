@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kinesis Réadaptation — site vitrine
 
-## Getting Started
+Showcase website for **Kinesis Réadaptation**, a multidisciplinary medical
+center in Dakar (opening June 2026). French-only (v1), mobile-first, premium /
+VIP positioning.
 
-First, run the development server:
+> Project conventions and design tokens live in [`CLAUDE.md`](./CLAUDE.md).
+
+## Stack
+
+- **Next.js 14** (App Router) + **TypeScript**
+- **Tailwind CSS** (brand tokens in `tailwind.config.ts`)
+- **lucide-react** (icons), **framer-motion** (subtle animations)
+- **zod** (form validation), **Resend** (contact email)
+
+## Pages
+
+`/` · `/le-centre` · `/specialites` (4 anchored pôles) · `/equipe` · `/contact`
+\+ `/mentions-legales`, `/politique-confidentialite`. Plus `sitemap.xml`,
+`robots.txt`, and a generated Open Graph image.
+
+All site copy lives in `src/content/` (`site.ts`, `specialites.ts`, `equipe.ts`,
+`centre.ts`) — i18n-ready, no hardcoded copy in components.
+
+## Local development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+cp .env.example .env.local   # then fill in values
+npm run dev                  # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```bash
+npm run build && npm start   # production build
+npm run lint                 # eslint
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+See [`.env.example`](./.env.example). Summary:
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Variable | Required | Description |
+|---|---|---|
+| `RESEND_API_KEY` | for email | Resend API key. Without it, the contact form still returns success but no email is sent (logged server-side). |
+| `CONTACT_TO_EMAIL` | for email | Inbox receiving contact submissions. |
+| `CONTACT_FROM_EMAIL` | for email | Verified Resend sender. |
+| `NEXT_PUBLIC_WHATSAPP` | recommended | WhatsApp number, international format, no `+`/spaces (e.g. `221770000000`). |
+| `NEXT_PUBLIC_SITE_URL` | recommended | Canonical URL, no trailing slash. Used for metadata, sitemap, JSON-LD. |
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Push this repo to GitHub and import it at [vercel.com/new](https://vercel.com/new).
+2. Framework preset: **Next.js** (auto-detected). Build: `next build`.
+3. Add the environment variables above in **Project → Settings → Environment
+   Variables**.
+4. Deploy. Vercel handles SSG/edge automatically.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Static export is also possible for any host (set `output: "export"` in
+`next.config.mjs`), but note the `/api/contact` route requires a Node/edge
+runtime — on a purely static host, wire the form to an external endpoint instead.
+
+## Outstanding content (client to provide)
+
+Search the codebase for `TODO`. Highlights: real logo SVG, exact brand green hex,
+WhatsApp number, domain + public email, team names/photos, premises photos,
+GPS coordinates, social links, exact opening hours.

@@ -1,0 +1,7 @@
+<!-- Placeholder portrait for team members until real photos are provided. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Photo à venir">
+  <rect width="400" height="400" fill="#F7F6FB" />
+  <circle cx="200" cy="160" r="64" fill="#E2A9F1" opacity="0.55" />
+  <path d="M80 360 c0-66 54-120 120-120 s120 54 120 120 z" fill="#BFA0E8" opacity="0.55" />
+  <text x="200" y="392" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" fill="#686867">Photo à venir</text>
+</svg>
