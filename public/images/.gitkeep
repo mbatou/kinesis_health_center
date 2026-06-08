@@ -1,0 +1,6 @@
+# Drop zone for real center photography.
+# Expected files (referenced in src/content/images.ts):
+#   hero_landing_page.png
+#   salle_accueil.png
+#   salle_reabilitation.png
+#   pool_aquagym.png

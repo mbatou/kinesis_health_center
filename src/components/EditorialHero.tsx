@@ -1,5 +1,6 @@
 import { ArrowUpRight, MessageCircle } from "lucide-react";
 import { site, whatsappLink } from "@/content/site";
+import { images } from "@/content/images";
 import Container from "./Container";
 import Button from "./Button";
 import Kicker from "./Kicker";
@@ -44,9 +45,15 @@ export default function EditorialHero() {
           </div>
         </div>
 
-        {/* Media column */}
+        {/* Media column — sits beside the title; never a full-bleed background,
+            so the "fil de soin" stays readable. */}
         <div className="lg:pl-4">
-          <MediaFrame ratio="aspect-[4/5]" priority />
+          <MediaFrame
+            src={images.hero.src}
+            alt={images.hero.alt}
+            ratio="aspect-[3/2]"
+            priority
+          />
         </div>
       </Container>
     </section>

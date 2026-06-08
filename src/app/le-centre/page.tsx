@@ -7,6 +7,7 @@ import CtaBand from "@/components/CtaBand";
 import MediaFrame from "@/components/MediaFrame";
 import Reveal from "@/components/Reveal";
 import { centre } from "@/content/centre";
+import { images } from "@/content/images";
 
 export const metadata: Metadata = {
   title: "Le centre",
@@ -18,17 +19,28 @@ export const metadata: Metadata = {
 export default function LeCentrePage() {
   return (
     <>
-      {/* Intro */}
+      {/* Intro + media */}
       <Section className="bg-surface">
-        <SectionTitle
-          kicker="Le centre"
-          title="Un établissement de référence, au service des patients"
-        />
-        <Reveal>
-          <p className="mt-6 max-w-3xl text-lg leading-relaxed text-kinesis-grey">
-            {centre.intro}
-          </p>
-        </Reveal>
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <SectionTitle
+              kicker="Le centre"
+              title="Un établissement de référence, au service des patients"
+            />
+            <Reveal>
+              <p className="mt-6 max-w-prose text-lg leading-relaxed text-kinesis-grey">
+                {centre.intro}
+              </p>
+            </Reveal>
+          </div>
+          <Reveal delay={0.05}>
+            <MediaFrame
+              src={images.accueil.src}
+              alt={images.accueil.alt}
+              ratio="aspect-[4/3]"
+            />
+          </Reveal>
+        </div>
       </Section>
 
       <EcgDivider />
