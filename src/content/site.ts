@@ -6,7 +6,7 @@ export const site = {
   name: "Kinesis Réadaptation",
   tagline: "Un seul lieu. Toutes vos spécialités.",
   description:
-    "Centre médical pluridisciplinaire à Dakar : cardiologie, médecine vasculaire, réadaptation, explorations fonctionnelles et consultations spécialisées. Un accompagnement personnalisé, dans le respect de la confidentialité et du confort.",
+    "Centre médical pluridisciplinaire à Dakar : cardiologie, médecine vasculaire, réadaptation, explorations fonctionnelles et consultations spécialisées. Un accompagnement personnalisé, dans le respect de la confidentialité et de la sérénité de chaque patient.",
 
   // TODO domaine : recommandé kinesisreadaptation.com (aligné charte).
   // L'e-mail fourni par le client comportait une faute (kinesisreadaption) — corrigé ici.

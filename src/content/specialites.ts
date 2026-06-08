@@ -68,7 +68,7 @@ export const poles: Pole[] = [
     num: "03",
     title: "Réadaptation & bien-être",
     icon: "PersonStanding",
-    intro: "Rééducation, mobilité et bien-être, dans un cadre confortable.",
+    intro: "Rééducation, mobilité et bien-être, dans un cadre apaisant.",
     specialties: [
       {
         name: "Médecine physique & réadaptation",

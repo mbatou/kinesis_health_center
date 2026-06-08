@@ -12,7 +12,7 @@ import { images } from "@/content/images";
 export const metadata: Metadata = {
   title: "Le centre",
   description:
-    "Kinesis Réadaptation, centre médical de référence à Dakar : excellence médicale, innovation technologique, démarche qualité et accompagnement personnalisé, dans le respect de la confidentialité et du confort.",
+    "Kinesis Réadaptation, centre médical de référence à Dakar : excellence médicale, innovation technologique, démarche qualité et accompagnement personnalisé, dans le respect de la confidentialité et de la sérénité de chaque patient.",
   alternates: { canonical: "/le-centre" },
 };
 

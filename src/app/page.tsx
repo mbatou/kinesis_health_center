@@ -15,7 +15,7 @@ const advantages = [
   {
     icon: HeartHandshake,
     title: "Accompagnement personnalisé",
-    desc: "Un parcours pensé pour chaque patient, dans le respect de la confidentialité et du confort.",
+    desc: "Un parcours pensé pour chaque patient, dans le respect de la confidentialité et de la sérénité.",
   },
   {
     icon: ShieldCheck,

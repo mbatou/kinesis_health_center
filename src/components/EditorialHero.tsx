@@ -24,8 +24,8 @@ export default function EditorialHero() {
           <p className="mt-6 max-w-prose text-lg text-kinesis-grey">
             De la cardiologie à la réadaptation, Kinesis Réadaptation réunit vos
             soins en un seul parcours — un accompagnement personnalisé, dans le
-            respect de la confidentialité et du confort, premier centre privé de
-            médecine vasculaire de la place.
+            respect de la confidentialité et de la sérénité de chaque patient,
+            premier centre privé de médecine vasculaire de la place.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Button href="/contact" size="lg">

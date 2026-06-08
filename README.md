@@ -2,7 +2,7 @@
 
 Showcase website for **Kinesis Réadaptation**, a multidisciplinary medical
 center in Dakar (opening June 2026). French-only (v1), mobile-first, premium
-positioning — personalized care & comfort.
+positioning — medical expertise & personalized care.
 
 **Art direction:** editorial premium + the animated **"fil de soin"** — a
 continuous violet→green thread (`FilDeSoin.tsx`) that draws itself down the left
