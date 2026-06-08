@@ -37,7 +37,7 @@ export default function LeCentrePage() {
             <MediaFrame
               src={images.accueil.src}
               alt={images.accueil.alt}
-              ratio="aspect-[4/3]"
+              ratio="aspect-[3/2]"
             />
           </Reveal>
         </div>

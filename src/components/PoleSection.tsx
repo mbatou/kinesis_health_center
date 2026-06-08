@@ -59,7 +59,7 @@ export default function PoleSection({
               <MediaFrame
                 src={secondaryImage.src}
                 alt={secondaryImage.alt}
-                ratio="aspect-[3/2]"
+                ratio="aspect-[4/3]"
                 className="mt-8"
               />
             )}
