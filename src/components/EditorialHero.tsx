@@ -51,7 +51,7 @@ export default function EditorialHero() {
           <MediaFrame
             src={images.hero.src}
             alt={images.hero.alt}
-            ratio="aspect-[3/2]"
+            ratio="aspect-[4/5]"
             priority
           />
         </div>
