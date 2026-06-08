@@ -17,7 +17,7 @@ export const centre = {
     },
     {
       title: "Approche humaine",
-      desc: "L'écoute et l'accompagnement du patient au cœur de chaque étape du parcours de soin.",
+      desc: "L'écoute et l'accompagnement du patient au cœur de chaque étape de la prise en charge.",
     },
     {
       title: "Démarche qualité",
@@ -30,7 +30,7 @@ export const centre = {
     desc: "Un parcours pensé pour chaque patient, dans le respect de la confidentialité et de la sérénité : accueil dédié, prise en charge fluide et environnement serein, du premier contact jusqu'au suivi.",
     points: [
       "Accueil personnalisé et confidentiel",
-      "Parcours de soin coordonné en un seul lieu",
+      "Expertises coordonnées en un seul lieu",
       "Cadre confortable et apaisant",
       "Rayonnement sous-régional",
     ],

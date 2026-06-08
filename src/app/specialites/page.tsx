@@ -19,7 +19,7 @@ export default function SpecialitesPage() {
       <Section>
         <SectionTitle
           kicker="Nos spécialités"
-          title="Quatre pôles, un même parcours de soin"
+          title="Quatre pôles, des expertises réunies"
           subtitle="Cardiologie, explorations fonctionnelles, réadaptation et consultations spécialisées, réunies en un seul lieu à Dakar."
         />
         <nav className="mt-10 flex flex-wrap gap-x-8 gap-y-3" aria-label="Pôles">

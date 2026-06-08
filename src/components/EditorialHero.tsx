@@ -16,16 +16,17 @@ export default function EditorialHero() {
         <div>
           <Kicker>Centre médical pluridisciplinaire · {site.address.city}</Kicker>
           <h1 className="mt-5 text-display text-kinesis-ink">
-            Un seul lieu.
+            Des expertises
             <br />
-            <span className="text-kinesis-violet">Toutes vos spécialités.</span>
+            <span className="text-kinesis-violet">réunies.</span>
           </h1>
           <EcgAccent width={120} className="mt-6" />
           <p className="mt-6 max-w-prose text-lg text-kinesis-grey">
-            De la cardiologie à la réadaptation, Kinesis Réadaptation réunit vos
-            soins en un seul parcours — un accompagnement personnalisé, dans le
-            respect de la confidentialité et de la sérénité de chaque patient,
-            premier centre privé de médecine vasculaire de la place.
+            De la cardiologie à la réadaptation, Kinesis Réadaptation réunit en
+            un seul lieu des expertises médicales coordonnées — un accompagnement
+            personnalisé, dans le respect de la confidentialité et de la sérénité
+            de chaque patient, premier centre privé de médecine vasculaire de la
+            place.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Button href="/contact" size="lg">

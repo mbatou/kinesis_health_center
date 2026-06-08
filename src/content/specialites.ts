@@ -18,7 +18,7 @@ export type Pole = {
   specialties: Specialty[];
 };
 
-// The order of poles = the care journey / the order of the "fil de soin".
+// The order of poles = display order / the order of the "fil de soin".
 export const poles: Pole[] = [
   {
     id: "cardiovasculaire",

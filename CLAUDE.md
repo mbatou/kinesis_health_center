@@ -24,9 +24,11 @@ ownable graphic signature, never gadgets.
 ## Art direction — the "fil de soin" (core of the project)
 
 The logo's ECG line + spine becomes a **continuous vertical thread** running down
-the page, linking sections / the 4 poles like a care journey. Violet melting into
-green. **Nodes** (small circles) mark the poles and light up as their section
-enters the viewport. See `FilDeSoin.tsx` — treat it as the flagship component.
+the page, linking sections / the 4 poles. It symbolizes expertises gathered &
+coordinated in one place — **not** a single care journey (patient journeys
+differ). Violet melting into green. **Nodes** (small circles) mark the poles and
+light up as their section enters the viewport. See `FilDeSoin.tsx` — treat it as
+the flagship component.
 
 - Desktop (≥ lg): SVG `<path>` in a left-gutter overlay, `pointer-events:none`,
   `aria-hidden`. Drawn on scroll via framer-motion `useScroll` + `pathLength`

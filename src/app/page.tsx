@@ -34,8 +34,8 @@ export default function Home() {
         <Reveal>
           <SectionTitle
             kicker="Nos spécialités"
-            title="Quatre pôles, un même parcours de soin"
-            subtitle="De la cardiologie aux consultations spécialisées, suivez le fil — chaque pôle est une étape de votre prise en charge."
+            title="Quatre pôles, des expertises réunies"
+            subtitle="De la cardiologie aux consultations spécialisées, suivez le fil qui relie nos quatre pôles d'expertise, réunis en un seul lieu."
           />
         </Reveal>
         <div className="mt-12">
