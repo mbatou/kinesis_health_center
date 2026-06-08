@@ -4,7 +4,6 @@ import SectionTitle from "@/components/SectionTitle";
 import PoleSection from "@/components/PoleSection";
 import CtaBand from "@/components/CtaBand";
 import { poles } from "@/content/specialites";
-import { images } from "@/content/images";
 
 export const metadata: Metadata = {
   title: "Nos spécialités",
@@ -41,13 +40,7 @@ export default function SpecialitesPage() {
 
       {/* Anchored pole sections, traversed by the fil de soin */}
       {poles.map((pole, index) => (
-        <PoleSection
-          key={pole.id}
-          pole={pole}
-          alt={index % 2 === 1}
-          image={pole.id === "readaptation" ? images.readapt : undefined}
-          secondaryImage={pole.id === "readaptation" ? images.balneo : undefined}
-        />
+        <PoleSection key={pole.id} pole={pole} alt={index % 2 === 1} />
       ))}
 
       <CtaBand

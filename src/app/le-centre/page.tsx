@@ -19,28 +19,17 @@ export const metadata: Metadata = {
 export default function LeCentrePage() {
   return (
     <>
-      {/* Intro + media */}
+      {/* Intro */}
       <Section className="bg-surface">
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          <div>
-            <SectionTitle
-              kicker="Le centre"
-              title="Un établissement de référence, au service des patients"
-            />
-            <Reveal>
-              <p className="mt-6 max-w-prose text-lg leading-relaxed text-kinesis-grey">
-                {centre.intro}
-              </p>
-            </Reveal>
-          </div>
-          <Reveal delay={0.05}>
-            <MediaFrame
-              src={images.accueil.src}
-              alt={images.accueil.alt}
-              ratio="aspect-[3/2]"
-            />
-          </Reveal>
-        </div>
+        <SectionTitle
+          kicker="Le centre"
+          title="Un établissement de référence, au service des patients"
+        />
+        <Reveal>
+          <p className="mt-6 max-w-3xl text-lg leading-relaxed text-kinesis-grey">
+            {centre.intro}
+          </p>
+        </Reveal>
       </Section>
 
       <EcgDivider />
@@ -105,19 +94,19 @@ export default function LeCentrePage() {
         </div>
       </Section>
 
-      {/* Premises placeholder — TODO content: photos des locaux & équipements */}
+      {/* Premises gallery */}
       <Section>
         <Reveal>
           <SectionTitle
             kicker="Nos locaux"
             title="Un cadre confortable et apaisant"
-            subtitle="Les photos de nos locaux et équipements seront ajoutées prochainement."
+            subtitle="Espace d'accueil, plateau de réadaptation et bassin de balnéothérapie."
           />
         </Reveal>
         <div className="mt-10 grid gap-5 sm:grid-cols-3">
-          {[0, 1, 2].map((i) => (
-            <Reveal key={i} delay={i * 0.06}>
-              <MediaFrame ratio="aspect-[4/3]" badge="Photo du centre à venir" />
+          {[images.accueil, images.readapt, images.balneo].map((img, i) => (
+            <Reveal key={img.src} delay={i * 0.06}>
+              <MediaFrame src={img.src} alt={img.alt} ratio="aspect-[4/3]" />
             </Reveal>
           ))}
         </div>
