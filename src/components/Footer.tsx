@@ -51,9 +51,13 @@ export default function Footer() {
                   {site.emailPublic}
                 </a>
               </li>
-              <li className="flex items-center gap-2">
-                <Clock size={16} className="text-kinesis-green" />
-                {site.hours}
+              <li className="flex items-start gap-2">
+                <Clock size={16} className="mt-0.5 shrink-0 text-kinesis-green" />
+                <span>
+                  {site.hours}
+                  <br />
+                  {site.hoursVip}
+                </span>
               </li>
             </ul>
           </div>

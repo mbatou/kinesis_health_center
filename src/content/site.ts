@@ -35,6 +35,7 @@ export const site = {
   mapUrl: "https://www.google.com/maps?q=14.712650,-17.467148",
 
   hours: "Lundi – Samedi : 8h00 – 17h00", // TODO confirmer jours/horaires
+  hoursVip: "Dimanche (créneau VIP) : 10h00 – 15h00",
   // Machine-readable opening hours for JSON-LD (schema.org format).
   openingHours: "Mo-Sa 08:00-17:00",
 
@@ -44,6 +45,13 @@ export const site = {
   },
 
   openedSince: "Juin 2026",
+
+  // "Pourquoi Kinesis" — FROZEN list (do not reinvent, do not add "confort"/"parcours").
+  highlights: [
+    "Accueil personnalisé et confidentiel",
+    "Expertises coordonnées en un seul lieu",
+    "Cadre accueillant et professionnel",
+  ],
 } as const;
 
 // Helper: build a wa.me deep link with a pre-filled French message.

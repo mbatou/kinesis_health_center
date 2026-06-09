@@ -110,6 +110,7 @@ export default function ContactPage() {
                 <div>
                   <p className="font-medium text-kinesis-ink">Horaires</p>
                   <p className="text-kinesis-grey">{site.hours}</p>
+                  <p className="text-kinesis-grey">{site.hoursVip}</p>
                 </div>
               </li>
             </ul>
