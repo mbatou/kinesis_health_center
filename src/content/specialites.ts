@@ -23,18 +23,18 @@ export const poles: Pole[] = [
   {
     id: "cardiovasculaire",
     num: "01",
-    title: "Pôle cardiovasculaire",
+    title: "Cardiologie & médecine vasculaire",
     icon: "HeartPulse",
     intro:
-      "Prise en charge des maladies cardiovasculaires, de la circulation et de la réadaptation du cœur.",
+      "Le diagnostic et la prise en charge des maladies du cœur, de la circulation et du système vasculaire.",
     specialties: [
       {
         name: "Cardiologie",
-        desc: "Prise en charge des maladies cardiovasculaires.",
+        desc: "Maladies cardiaques et vasculaires, hypertension artérielle et pathologies associées.",
       },
       {
         name: "Médecine vasculaire",
-        desc: "Premier centre privé prenant en charge le lymphœdème et les autres causes de grosse jambe.",
+        desc: "Premier centre privé de la place : drainage lymphatique, prise en charge du lymphœdème et des autres causes de grosse jambe, et soin des plaies.",
       },
       {
         name: "Réadaptation cardiaque",
@@ -45,17 +45,25 @@ export const poles: Pole[] = [
   {
     id: "explorations",
     num: "02",
-    title: "Pôle explorations",
+    title: "Explorations",
     icon: "Activity",
-    intro: "Plateau d'explorations fonctionnelles pour un diagnostic précis.",
+    intro:
+      "Un plateau d'explorations fonctionnelles pour un diagnostic précis et complet.",
     specialties: [
       {
-        name: "Neurologie (EMG, EEG)",
-        desc: "Explorations électromyographiques et électroencéphalographiques.",
+        name: "Explorations neuro-musculaires et cérébrales (EMG, EEG)",
+        desc: "Électromyographie et électroencéphalographie pour explorer les nerfs, les muscles et le cerveau.",
+      },
+      // TODO content (Dr Diack): exact term to confirm — "exploration pathotechnique
+      // complet" transcribed as-is; medical rewording below to validate (or
+      // "exploration neurophysiologique complète").
+      {
+        name: "Bilan d'exploration complet",
+        desc: "Une exploration fonctionnelle complète, pour un diagnostic global.",
       },
       {
-        name: "Apnée du sommeil",
-        desc: "Dépistage et suivi des troubles du sommeil.",
+        name: "Apnée du sommeil (polygraphie ventilatoire)",
+        desc: "Dépistage et suivi des troubles du sommeil par polygraphie ventilatoire.",
       },
       {
         name: "Exploration fonctionnelle respiratoire (EFR)",
@@ -66,21 +74,22 @@ export const poles: Pole[] = [
   {
     id: "readaptation",
     num: "03",
-    title: "Réadaptation & bien-être",
+    title: "Médecine physique et de réadaptation (MPR)",
     icon: "PersonStanding",
-    intro: "Rééducation, mobilité et bien-être, dans un cadre apaisant.",
+    intro:
+      "Une réadaptation complète pour retrouver mobilité, fonction et autonomie — bien au-delà de la simple rééducation.",
     specialties: [
       {
-        name: "Médecine physique & réadaptation",
-        desc: "Rééducation fonctionnelle personnalisée.",
+        name: "Médecine physique et de réadaptation (MPR)",
+        desc: "Une réadaptation globale et complète, qui va plus loin que la rééducation pour restaurer durablement la fonction et l'autonomie.",
       },
       {
         name: "Kinésithérapie",
-        desc: "Soins avant et après accouchement, et rééducation générale.",
+        desc: "De la kinésithérapie générale à la rééducation périnéale et au suivi pré et post-natal.",
       },
       {
-        name: "Balnéothérapie",
-        desc: "Piscine chauffée et jacuzzi pour des soins en milieu aquatique.",
+        name: "Balnéothérapie & aquagym",
+        desc: "Soins en milieu aquatique : piscine chauffée, jacuzzi et séances d'aquagym.",
       },
     ],
   },
@@ -89,7 +98,8 @@ export const poles: Pole[] = [
     num: "04",
     title: "Consultations spécialisées",
     icon: "Stethoscope",
-    intro: "Un large éventail de consultations spécialisées en un seul lieu.",
+    intro:
+      "Un large éventail de consultations spécialisées, réunies en un seul lieu.",
     specialties: [
       { name: "Diabétologie" },
       { name: "Néphrologie" },
