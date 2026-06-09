@@ -3,6 +3,7 @@ import EditorialHero from "@/components/EditorialHero";
 import Section from "@/components/Section";
 import SectionTitle from "@/components/SectionTitle";
 import PoleIndex from "@/components/PoleIndex";
+import DirectorWord from "@/components/DirectorWord";
 import CtaBand from "@/components/CtaBand";
 import Reveal from "@/components/Reveal";
 
@@ -68,6 +69,9 @@ export default function Home() {
           ))}
         </div>
       </Section>
+
+      {/* Le mot du directeur */}
+      <DirectorWord />
 
       <CtaBand />
     </>

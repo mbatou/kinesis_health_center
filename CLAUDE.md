@@ -108,6 +108,8 @@ plus `/mentions-legales` and `/politique-confidentialite`.
 - [ ] Real WhatsApp number → `site.whatsapp` + `NEXT_PUBLIC_WHATSAPP`
 - [ ] Validated domain + corrected public email (typo `kinesisreadaption`)
 - [ ] Team: names, roles, bios, photos → `equipe.ts` + `public/team/`
+- [ ] Director's word: final text (replace `[TEXTE PROVISOIRE]`) + real photo →
+      `director.ts` + `public/images/dr_bouna_diack.png`
 - [ ] Photos of premises & equipment
 - [ ] Enriched presentation copy + validated specialty descriptions
 - [ ] Real social links (Facebook, Instagram)
