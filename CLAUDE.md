@@ -113,7 +113,7 @@ plus `/mentions-legales` and `/politique-confidentialite`.
 - [ ] Photos of premises & equipment
 - [ ] Enriched presentation copy + validated specialty descriptions
 - [ ] Real social links (Facebook, Instagram)
-- [ ] Exact GPS coordinates (map + JSON-LD)
+- [x] Exact GPS coordinates (map + JSON-LD) — 14.712650, -17.467148
 - [ ] Exact opening days/hours
 
 Search the codebase for `TODO` to find each spot.

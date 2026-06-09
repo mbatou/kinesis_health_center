@@ -30,8 +30,9 @@ export const site = {
     full: "Sacré Cœur Keur Gorgui, Villa AW N°18, Dakar, Sénégal",
   },
 
-  // TODO : coordonnées GPS exactes du centre (carte + JSON-LD).
-  geo: { lat: 14.7167, lng: -17.4677 },
+  // Coordonnées GPS réelles confirmées (carte + JSON-LD).
+  geo: { lat: 14.71265, lng: -17.467148 },
+  mapUrl: "https://www.google.com/maps?q=14.712650,-17.467148",
 
   hours: "Lundi – Samedi : 8h00 – 17h00", // TODO confirmer jours/horaires
   // Machine-readable opening hours for JSON-LD (schema.org format).

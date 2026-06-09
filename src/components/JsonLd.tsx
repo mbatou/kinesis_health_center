@@ -25,6 +25,7 @@ export default function JsonLd() {
       latitude: site.geo.lat,
       longitude: site.geo.lng,
     },
+    hasMap: site.mapUrl,
     openingHours: site.openingHours,
     medicalSpecialty: poles.map((p) => p.title),
     sameAs: [site.socials.facebook, site.socials.instagram].filter(
