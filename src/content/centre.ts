@@ -3,7 +3,7 @@
 
 export const centre = {
   intro:
-    "Kinesis Réadaptation est un établissement de référence où l'excellence médicale est au service des patients. Il allie innovation technologique et expertise humaine. Premier centre privé de médecine vasculaire de la place, il propose une démarche qualité et un accompagnement personnalisé, dans le respect de la confidentialité et de la sérénité de chaque patient.",
+    "Kinesis Réadaptation est un établissement de référence où l'excellence médicale est au service des patients. Il allie innovation technologique et expertise médicale. Premier centre privé de médecine vasculaire de la place, il propose une démarche qualité et un accompagnement personnalisé, dans le respect de la confidentialité et de la sérénité de chaque patient.",
 
   // Mission / valeurs (TODO content : à enrichir/valider avec le client).
   values: [
