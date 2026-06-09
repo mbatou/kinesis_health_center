@@ -16,9 +16,9 @@ export default function EditorialHero() {
         <div>
           <Kicker>Centre médical pluridisciplinaire · {site.address.city}</Kicker>
           <h1 className="mt-5 text-display text-kinesis-ink">
-            Des expertises
+            Un seul lieu.
             <br />
-            <span className="text-kinesis-violet">réunies.</span>
+            <span className="text-kinesis-violet">Toutes vos spécialités.</span>
           </h1>
           <EcgAccent width={120} className="mt-6" />
           <p className="mt-6 max-w-prose text-lg text-kinesis-grey">
