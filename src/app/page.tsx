@@ -6,12 +6,15 @@ import PoleIndex from "@/components/PoleIndex";
 import DirectorWord from "@/components/DirectorWord";
 import CtaBand from "@/components/CtaBand";
 import Reveal from "@/components/Reveal";
-import { site } from "@/content/site";
+import { getHomeContent, getPolesContent } from "@/lib/editable";
 
-// Icons paired with site.highlights (presentation only; the copy is frozen).
+// Icons paired with the highlights (presentation only; the copy is editable).
 const highlightIcons = [ShieldCheck, Layers, HeartHandshake];
 
-export default function Home() {
+export default async function Home() {
+  const home = await getHomeContent();
+  const poles = await getPolesContent();
+
   return (
     <>
       <EditorialHero />
@@ -21,12 +24,12 @@ export default function Home() {
         <Reveal>
           <SectionTitle
             kicker="Nos spécialités"
-            title="Quatre pôles, des expertises réunies"
-            subtitle="De la cardiologie aux consultations spécialisées, suivez le fil qui relie nos quatre pôles d'expertise, réunis en un seul lieu."
+            title={home.specialitesTitle}
+            subtitle={home.specialitesSubtitle}
           />
         </Reveal>
         <div className="mt-12">
-          <PoleIndex />
+          <PoleIndex poles={poles} />
         </div>
       </Section>
 
@@ -35,15 +38,15 @@ export default function Home() {
         <Reveal>
           <SectionTitle
             kicker="Pourquoi Kinesis"
-            title="L'excellence médicale, dans un cadre d'exception"
-            subtitle="Kinesis Réadaptation allie innovation technologique et expertise médicale, premier centre privé de médecine vasculaire de la place."
+            title={home.pourquoiTitle}
+            subtitle={home.pourquoiSubtitle}
           />
         </Reveal>
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {site.highlights.map((highlight, i) => {
+          {home.highlights.map((highlight, i) => {
             const Icon = highlightIcons[i] ?? ShieldCheck;
             return (
-              <Reveal key={highlight} delay={i * 0.06}>
+              <Reveal key={highlight + i} delay={i * 0.06}>
                 <div className="flex h-full flex-col rounded-2xl border border-line bg-white p-7">
                   <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-kinesis-green/10 text-kinesis-green">
                     <Icon size={24} aria-hidden="true" />

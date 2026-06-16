@@ -2,9 +2,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { Facebook, Instagram, MapPin, Phone, Mail, Clock } from "lucide-react";
 import { site, telLink } from "@/content/site";
+import { getSiteContent } from "@/lib/editable";
 import Container from "./Container";
 
-export default function Footer() {
+export default async function Footer() {
+  const c = await getSiteContent();
   return (
     <footer className="border-t border-line bg-surface">
       <Container className="py-12 md:py-16">
@@ -19,11 +21,11 @@ export default function Footer() {
               className="h-10 w-auto"
             />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-kinesis-grey">
-              {site.tagline}. Centre médical pluridisciplinaire à {site.address.city}.
+              {c.tagline} Centre médical pluridisciplinaire à {site.address.city}.
             </p>
             <address className="mt-4 flex items-start gap-2 not-italic text-sm text-kinesis-grey">
               <MapPin size={18} className="mt-0.5 shrink-0 text-kinesis-green" />
-              <span>{site.address.full}</span>
+              <span>{c.address.full}</span>
             </address>
           </div>
 
@@ -31,7 +33,7 @@ export default function Footer() {
           <div>
             <h3 className="text-sm font-semibold text-kinesis-violet">Contact</h3>
             <ul className="mt-4 space-y-3 text-sm text-kinesis-grey">
-              {site.phones.map((phone) => (
+              {c.phones.map((phone) => (
                 <li key={phone}>
                   <a
                     href={telLink(phone)}
@@ -44,19 +46,19 @@ export default function Footer() {
               ))}
               <li>
                 <a
-                  href={`mailto:${site.emailPublic}`}
+                  href={`mailto:${c.emailPublic}`}
                   className="flex items-center gap-2 hover:text-kinesis-violet"
                 >
                   <Mail size={16} className="text-kinesis-green" />
-                  {site.emailPublic}
+                  {c.emailPublic}
                 </a>
               </li>
               <li className="flex items-start gap-2">
                 <Clock size={16} className="mt-0.5 shrink-0 text-kinesis-green" />
                 <span>
-                  {site.hours}
+                  {c.hours}
                   <br />
-                  {site.hoursVip}
+                  {c.hoursVip}
                 </span>
               </li>
             </ul>

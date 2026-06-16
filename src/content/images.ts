@@ -19,4 +19,8 @@ export const images = {
     src: "/images/pool_aquagym.png",
     alt: "Bassin de balnéothérapie du centre Kinesis Réadaptation",
   },
+  director: {
+    src: "/images/dr_bouna_diack.png",
+    alt: "Portrait du Dr Bouna Diack, directeur de Kinesis Réadaptation",
+  },
 } as const;

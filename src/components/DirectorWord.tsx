@@ -3,12 +3,15 @@ import Kicker from "./Kicker";
 import EcgAccent from "./EcgAccent";
 import MediaFrame from "./MediaFrame";
 import Reveal from "./Reveal";
-import { director } from "@/content/director";
+import { getDirectorContent, getSiteImages } from "@/lib/editable";
 
 // "Le mot du directeur" — a reassuring violet-wash panel on the home page:
 // director's photo + message + signature. Falls back to the elegant MediaFrame
 // placeholder until a real portrait is provided.
-export default function DirectorWord() {
+export default async function DirectorWord() {
+  const director = await getDirectorContent();
+  const images = await getSiteImages();
+
   return (
     <Section>
       <Reveal>
@@ -16,7 +19,7 @@ export default function DirectorWord() {
           <div className="grid items-center gap-8 md:grid-cols-[0.8fr_1.2fr] md:gap-12">
             {/* Portrait */}
             <MediaFrame
-              src={director.photo}
+              src={images.director.src}
               alt={`Portrait de ${director.name}`}
               ratio="aspect-[4/5]"
               badge="Photo du directeur à venir"

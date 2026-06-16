@@ -7,7 +7,11 @@ import Button from "./Button";
 
 type Status = "idle" | "loading" | "success" | "error";
 
-export default function ContactForm() {
+export default function ContactForm({
+  specialties = allSpecialtyNames,
+}: {
+  specialties?: string[];
+}) {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string>("");
 
@@ -141,7 +145,7 @@ export default function ContactForm() {
           defaultValue=""
         >
           <option value="">— Sélectionnez (optionnel) —</option>
-          {allSpecialtyNames.map((name) => (
+          {specialties.map((name) => (
             <option key={name} value={name}>
               {name}
             </option>

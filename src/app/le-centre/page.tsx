@@ -6,8 +6,7 @@ import EcgDivider from "@/components/EcgDivider";
 import CtaBand from "@/components/CtaBand";
 import MediaFrame from "@/components/MediaFrame";
 import Reveal from "@/components/Reveal";
-import { centre } from "@/content/centre";
-import { images } from "@/content/images";
+import { getCentreContent, getSiteImages } from "@/lib/editable";
 
 export const metadata: Metadata = {
   title: "Le centre",
@@ -16,7 +15,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "/le-centre" },
 };
 
-export default function LeCentrePage() {
+export default async function LeCentrePage() {
+  const centre = await getCentreContent();
+  const images = await getSiteImages();
   return (
     <>
       {/* Intro */}

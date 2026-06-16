@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { Resend } from "resend";
 import { site } from "@/content/site";
+import { createSubmission } from "@/lib/db";
 
 // Validation schema for the contact form payload.
 const ContactSchema = z.object({
@@ -36,6 +37,19 @@ export async function POST(request: Request) {
   // Honeypot triggered → pretend success, drop silently.
   if (data.company && data.company.trim() !== "") {
     return NextResponse.json({ ok: true });
+  }
+
+  // Persist the submission for the back office (best-effort; no-op without a DB).
+  try {
+    await createSubmission({
+      nom: data.nom,
+      telephone: data.telephone,
+      email: data.email || null,
+      specialite: data.specialite || null,
+      message: data.message,
+    });
+  } catch (err) {
+    console.error("[contact] DB persist failed (continuing):", err);
   }
 
   const apiKey = process.env.RESEND_API_KEY;

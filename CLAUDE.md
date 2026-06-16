@@ -101,6 +101,16 @@ cards `rounded-2xl`, buttons `rounded-full`, soft low shadows.
 `/` · `/le-centre` · `/specialites` (4 anchored pôles) · `/equipe` · `/contact`
 plus `/mentions-legales` and `/politique-confidentialite`.
 
+## Back office (`/admin`)
+
+Custom CMS for the team (login `drdiack` + `ADMIN_PASSWORD`/`AUTH_SECRET`, `jose`
+cookie session, `middleware.ts` guard). Storage: Vercel Postgres (editable copy +
+submissions) + Vercel Blob (images). Public pages render **defaults from
+`src/content` ＋ overrides** via `src/lib/editable.ts` (the registry is the single
+source of truth for editable fields); everything degrades to the static site when
+no DB/Blob is configured. Edits call `revalidatePath`. Key files: `src/lib/`
+(`auth`, `db`, `blob`, `editable`), `src/app/admin/**`, `src/app/api/admin/**`.
+
 ## Outstanding TODO content (client to provide)
 
 - [ ] Logo SVG (charte versions) → `public/logo.svg`

@@ -6,7 +6,8 @@ import ContactForm from "@/components/ContactForm";
 import MapEmbed from "@/components/MapEmbed";
 import Button from "@/components/Button";
 import SpinePattern from "@/components/SpinePattern";
-import { site, telLink, whatsappLink } from "@/content/site";
+import { telLink, whatsappLink } from "@/content/site";
+import { getSiteContent, getPolesContent } from "@/lib/editable";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -15,7 +16,11 @@ export const metadata: Metadata = {
   alternates: { canonical: "/contact" },
 };
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const c = await getSiteContent();
+  const specialties = (await getPolesContent()).flatMap((p) =>
+    p.specialties.map((s) => s.name)
+  );
   return (
     <>
       <section className="relative overflow-hidden bg-surface">
@@ -38,7 +43,7 @@ export default function ContactPage() {
                 <MessageCircle size={20} />
                 WhatsApp
               </Button>
-              <Button href={telLink(site.phones[0])} variant="outline" size="lg">
+              <Button href={telLink(c.phones[0])} variant="outline" size="lg">
                 <Phone size={20} />
                 Appeler
               </Button>
@@ -59,7 +64,7 @@ export default function ContactPage() {
               <span className="text-kinesis-green">*</span> sont obligatoires.
             </p>
             <div className="mt-6">
-              <ContactForm />
+              <ContactForm specialties={specialties} />
             </div>
           </div>
 
@@ -74,7 +79,7 @@ export default function ContactPage() {
                 <div>
                   <p className="font-medium text-kinesis-ink">Adresse</p>
                   <address className="not-italic text-kinesis-grey">
-                    {site.address.full}
+                    {c.address.full}
                   </address>
                 </div>
               </li>
@@ -82,7 +87,7 @@ export default function ContactPage() {
                 <Phone size={20} className="mt-0.5 shrink-0 text-kinesis-green" />
                 <div>
                   <p className="font-medium text-kinesis-ink">Téléphone</p>
-                  {site.phones.map((phone) => (
+                  {c.phones.map((phone) => (
                     <a
                       key={phone}
                       href={telLink(phone)}
@@ -98,10 +103,10 @@ export default function ContactPage() {
                 <div>
                   <p className="font-medium text-kinesis-ink">E-mail</p>
                   <a
-                    href={`mailto:${site.emailPublic}`}
+                    href={`mailto:${c.emailPublic}`}
                     className="text-kinesis-grey hover:text-kinesis-violet"
                   >
-                    {site.emailPublic}
+                    {c.emailPublic}
                   </a>
                 </div>
               </li>
@@ -109,8 +114,8 @@ export default function ContactPage() {
                 <Clock size={20} className="mt-0.5 shrink-0 text-kinesis-green" />
                 <div>
                   <p className="font-medium text-kinesis-ink">Horaires</p>
-                  <p className="text-kinesis-grey">{site.hours}</p>
-                  <p className="text-kinesis-grey">{site.hoursVip}</p>
+                  <p className="text-kinesis-grey">{c.hours}</p>
+                  <p className="text-kinesis-grey">{c.hoursVip}</p>
                 </div>
               </li>
             </ul>

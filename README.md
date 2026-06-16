@@ -51,6 +51,41 @@ See [`.env.example`](./.env.example). Summary:
 | `CONTACT_FROM_EMAIL` | for email | Verified Resend sender. |
 | `NEXT_PUBLIC_WHATSAPP` | recommended | WhatsApp number, international format, no `+`/spaces (e.g. `221770000000`). |
 | `NEXT_PUBLIC_SITE_URL` | recommended | Canonical URL, no trailing slash. Used for metadata, sitemap, JSON-LD. |
+| `ADMIN_USERNAME` | back office | Admin login (default `drdiack`). |
+| `ADMIN_PASSWORD` | back office | Admin password. Set in Vercel; required to log in. |
+| `AUTH_SECRET` | back office | Secret to sign the session cookie (`openssl rand -base64 32`). |
+| `POSTGRES_URL` (+ friends) | back office | Auto-injected by **Vercel Postgres**. Stores editable content + submissions. |
+| `BLOB_READ_WRITE_TOKEN` | back office | Auto-injected by **Vercel Blob**. Stores uploaded images. |
+
+## Back office (`/admin`)
+
+A built-in CMS for the team to edit copy, view bookings/contacts, and swap images.
+
+- **Login**: `/admin` → redirects to `/admin/login`. User `drdiack`, password = `ADMIN_PASSWORD`.
+- **Contenu**: edit site copy (hero, pole index, "Pourquoi Kinesis", le mot du
+  directeur, pôles & spécialités, coordonnées). Saving publishes immediately
+  (the affected pages are revalidated).
+- **Réservations & contacts**: every website form submission is saved and listed
+  (status: nouveau / traité / archivé) — in addition to the Resend email.
+- **Images**: replace the site photos (hero, accueil, réadaptation,
+  balnéothérapie, directeur) via upload to Vercel Blob.
+
+How it works: the public site renders **defaults from `src/content` ＋ overrides
+from the database**. With no DB/Blob configured, the site behaves exactly as the
+static version and the admin shows a "configure storage" notice.
+
+### Enabling it on Vercel
+
+1. **Storage → Create Database → Postgres**, link it to the project (injects
+   `POSTGRES_URL` …). Tables are created automatically on first use.
+2. **Storage → Create → Blob**, link it (injects `BLOB_READ_WRITE_TOKEN`).
+3. Add `ADMIN_PASSWORD` and `AUTH_SECRET` (and optionally `ADMIN_USERNAME`) in
+   **Settings → Environment Variables**.
+4. Redeploy. Visit `/admin` and log in.
+
+> Security note: this is a single shared login. For health-adjacent contact data,
+> consider rotating the password, restricting who has it, and (later) per-user
+> accounts if more team members need separate access.
 
 ## Deploy on Vercel
 
@@ -60,9 +95,8 @@ See [`.env.example`](./.env.example). Summary:
    Variables**.
 4. Deploy. Vercel handles SSG/edge automatically.
 
-Static export is also possible for any host (set `output: "export"` in
-`next.config.mjs`), but note the `/api/contact` route requires a Node/edge
-runtime — on a purely static host, wire the form to an external endpoint instead.
+Note: the contact API and the `/admin` back office require a Node/serverless
+runtime (Vercel), so a fully static export is no longer suitable.
 
 ## Outstanding content (client to provide)
 

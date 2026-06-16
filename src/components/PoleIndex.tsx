@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { poles } from "@/content/specialites";
+import type { Pole } from "@/content/specialites";
 import Reveal from "./Reveal";
 
 // Numbered index of the 4 poles (01 → 04), like a magazine contents page.
 // A thin local vertical line + a node per pole carries the "fil de soin"
 // signature here too (and on mobile, where the global fil is hidden).
-export default function PoleIndex() {
+export default function PoleIndex({ poles }: { poles: Pole[] }) {
   return (
     <ol className="relative">
       {/* Local thread connecting the nodes */}

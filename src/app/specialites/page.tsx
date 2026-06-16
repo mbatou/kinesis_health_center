@@ -3,7 +3,7 @@ import Section from "@/components/Section";
 import SectionTitle from "@/components/SectionTitle";
 import PoleSection from "@/components/PoleSection";
 import CtaBand from "@/components/CtaBand";
-import { poles } from "@/content/specialites";
+import { getPolesContent } from "@/lib/editable";
 
 export const metadata: Metadata = {
   title: "Nos spécialités",
@@ -12,7 +12,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/specialites" },
 };
 
-export default function SpecialitesPage() {
+export default async function SpecialitesPage() {
+  const poles = await getPolesContent();
   return (
     <>
       {/* Page header + numbered anchor nav */}
