@@ -1,9 +1,17 @@
 import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { editableFields } from "@/lib/editable";
-import { getContentOverrides, setContentOverrides, isDbConfigured } from "@/lib/db";
+import {
+  getContentOverrides,
+  setContentOverrides,
+  deleteContentOverrides,
+  isDbConfigured,
+} from "@/lib/db";
 
 const PUBLIC_PATHS = ["/", "/le-centre", "/specialites", "/contact"];
+const defaultsByKey: Record<string, string> = Object.fromEntries(
+  editableFields.map((f) => [f.key, f.default])
+);
 const validKeys = new Set(editableFields.map((f) => f.key));
 
 export async function GET() {
@@ -31,23 +39,26 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, error: "Requête invalide." }, { status: 400 });
   }
 
-  const entries: Record<string, string> = {};
+  // Fields equal to their default are removed (reset); the rest are upserted.
+  const toSet: Record<string, string> = {};
+  const toDelete: string[] = [];
   for (const [key, value] of Object.entries(body.values ?? {})) {
-    if (validKeys.has(key) && typeof value === "string") {
-      entries[key] = value;
-    }
-  }
-
-  if (Object.keys(entries).length === 0) {
-    return NextResponse.json({ ok: false, error: "Aucun champ valide." }, { status: 400 });
+    if (!validKeys.has(key) || typeof value !== "string") continue;
+    if (value === defaultsByKey[key]) toDelete.push(key);
+    else toSet[key] = value;
   }
 
   try {
-    await setContentOverrides(entries);
+    await setContentOverrides(toSet);
+    await deleteContentOverrides(toDelete);
     PUBLIC_PATHS.forEach((p) => revalidatePath(p));
-    return NextResponse.json({ ok: true, saved: Object.keys(entries).length });
+    return NextResponse.json({ ok: true, saved: Object.keys(toSet).length });
   } catch (err) {
     console.error("[admin/content] save error:", err);
-    return NextResponse.json({ ok: false, error: "Échec de l'enregistrement." }, { status: 500 });
+    const detail = err instanceof Error ? err.message : String(err);
+    return NextResponse.json(
+      { ok: false, error: `Échec de l'enregistrement : ${detail}` },
+      { status: 500 }
+    );
   }
 }

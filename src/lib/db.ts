@@ -169,6 +169,16 @@ export async function setContentOverrides(
   }
 }
 
+// Remove overrides (e.g. a field reset to its default) so the site falls back
+// to the static default copy.
+export async function deleteContentOverrides(keys: string[]): Promise<void> {
+  if (!isDbConfigured() || keys.length === 0) return;
+  await ensureSchema();
+  for (const key of keys) {
+    await pool().sql`DELETE FROM content_overrides WHERE key = ${key};`;
+  }
+}
+
 // ---- Image overrides ------------------------------------------------------
 
 export async function getImageOverrides(): Promise<Record<string, string>> {

@@ -52,18 +52,16 @@ export default function ContenuPage() {
   async function save() {
     setSaving(true);
     setNotice(null);
-    // Only send values that differ from the default (keeps overrides minimal).
-    const changed: Record<string, string> = {};
+    // Send every field; the server upserts changes and clears any reset to default.
+    const all: Record<string, string> = {};
     for (const f of fields) {
-      if (values[f.key] !== undefined && values[f.key] !== f.default) {
-        changed[f.key] = values[f.key];
-      }
+      all[f.key] = values[f.key] ?? f.default;
     }
     try {
       const res = await fetch("/api/admin/content", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ values: changed }),
+        body: JSON.stringify({ values: all }),
       });
       const data = await res.json();
       if (!res.ok || !data.ok) throw new Error(data.error || "Échec.");
