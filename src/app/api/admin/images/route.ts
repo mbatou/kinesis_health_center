@@ -64,6 +64,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true, url });
   } catch (err) {
     console.error("[admin/images] upload error:", err);
-    return NextResponse.json({ ok: false, error: "Échec du téléversement." }, { status: 500 });
+    // Surfaced to the authenticated admin to aid diagnosis.
+    const detail = err instanceof Error ? err.message : String(err);
+    return NextResponse.json(
+      { ok: false, error: `Échec du téléversement : ${detail}` },
+      { status: 500 }
+    );
   }
 }
