@@ -1,13 +1,34 @@
-import { sql } from "@vercel/postgres";
+import { createPool, type VercelPool } from "@vercel/postgres";
 
-// Data layer over Vercel Postgres. Everything is guarded: when POSTGRES_URL is
-// not configured (local dev / no DB yet), reads return empty defaults and writes
-// are no-ops, so the public site keeps working unchanged.
+// Data layer over Vercel Postgres. Everything is guarded: when no database is
+// configured (local dev / no DB yet), reads return empty defaults and writes are
+// no-ops, so the public site keeps working unchanged.
+//
+// Vercel's Postgres (now Neon-backed) may inject the connection string under
+// several names depending on how it was added, so we resolve it from all of the
+// common ones rather than relying on @vercel/postgres' default POSTGRES_URL.
+
+function resolveConnectionString(): string | undefined {
+  return (
+    process.env.POSTGRES_URL ||
+    process.env.POSTGRES_PRISMA_URL ||
+    process.env.DATABASE_URL ||
+    process.env.POSTGRES_URL_NON_POOLING ||
+    process.env.DATABASE_URL_UNPOOLED ||
+    undefined
+  );
+}
 
 export function isDbConfigured(): boolean {
-  return Boolean(
-    process.env.POSTGRES_URL || process.env.POSTGRES_PRISMA_URL
-  );
+  return Boolean(resolveConnectionString());
+}
+
+let _pool: VercelPool | null = null;
+function pool(): VercelPool {
+  if (!_pool) {
+    _pool = createPool({ connectionString: resolveConnectionString() });
+  }
+  return _pool;
 }
 
 let schemaPromise: Promise<void> | null = null;
@@ -17,7 +38,7 @@ export function ensureSchema(): Promise<void> {
   if (!isDbConfigured()) return Promise.resolve();
   if (!schemaPromise) {
     schemaPromise = (async () => {
-      await sql`
+      await pool().sql`
         CREATE TABLE IF NOT EXISTS submissions (
           id BIGSERIAL PRIMARY KEY,
           type TEXT NOT NULL DEFAULT 'contact',
@@ -30,14 +51,14 @@ export function ensureSchema(): Promise<void> {
           created_at TIMESTAMPTZ NOT NULL DEFAULT now()
         );
       `;
-      await sql`
+      await pool().sql`
         CREATE TABLE IF NOT EXISTS content_overrides (
           key TEXT PRIMARY KEY,
           value TEXT NOT NULL,
           updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
         );
       `;
-      await sql`
+      await pool().sql`
         CREATE TABLE IF NOT EXISTS image_overrides (
           key TEXT PRIMARY KEY,
           url TEXT NOT NULL,
@@ -79,7 +100,7 @@ export type NewSubmission = {
 export async function createSubmission(input: NewSubmission): Promise<void> {
   if (!isDbConfigured()) return;
   await ensureSchema();
-  await sql`
+  await pool().sql`
     INSERT INTO submissions (type, nom, telephone, email, specialite, message)
     VALUES (
       ${input.type ?? "contact"}, ${input.nom}, ${input.telephone},
@@ -91,7 +112,7 @@ export async function createSubmission(input: NewSubmission): Promise<void> {
 export async function listSubmissions(): Promise<Submission[]> {
   if (!isDbConfigured()) return [];
   await ensureSchema();
-  const { rows } = await sql<Submission>`
+  const { rows } = await pool().sql<Submission>`
     SELECT id, type, nom, telephone, email, specialite, message, status,
            to_char(created_at, 'YYYY-MM-DD"T"HH24:MI:SSOF') AS created_at
     FROM submissions
@@ -107,13 +128,13 @@ export async function setSubmissionStatus(
 ): Promise<void> {
   if (!isDbConfigured()) return;
   await ensureSchema();
-  await sql`UPDATE submissions SET status = ${status} WHERE id = ${id};`;
+  await pool().sql`UPDATE submissions SET status = ${status} WHERE id = ${id};`;
 }
 
 export async function countNewSubmissions(): Promise<number> {
   if (!isDbConfigured()) return 0;
   await ensureSchema();
-  const { rows } = await sql<{ count: string }>`
+  const { rows } = await pool().sql<{ count: string }>`
     SELECT COUNT(*)::text AS count FROM submissions WHERE status = 'nouveau';
   `;
   return Number(rows[0]?.count ?? 0);
@@ -125,7 +146,7 @@ export async function getContentOverrides(): Promise<Record<string, string>> {
   if (!isDbConfigured()) return {};
   try {
     await ensureSchema();
-    const { rows } = await sql<{ key: string; value: string }>`
+    const { rows } = await pool().sql<{ key: string; value: string }>`
       SELECT key, value FROM content_overrides;
     `;
     return Object.fromEntries(rows.map((r) => [r.key, r.value]));
@@ -140,7 +161,7 @@ export async function setContentOverrides(
   if (!isDbConfigured()) return;
   await ensureSchema();
   for (const [key, value] of Object.entries(entries)) {
-    await sql`
+    await pool().sql`
       INSERT INTO content_overrides (key, value, updated_at)
       VALUES (${key}, ${value}, now())
       ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value, updated_at = now();
@@ -154,7 +175,7 @@ export async function getImageOverrides(): Promise<Record<string, string>> {
   if (!isDbConfigured()) return {};
   try {
     await ensureSchema();
-    const { rows } = await sql<{ key: string; url: string }>`
+    const { rows } = await pool().sql<{ key: string; url: string }>`
       SELECT key, url FROM image_overrides;
     `;
     return Object.fromEntries(rows.map((r) => [r.key, r.url]));
@@ -166,7 +187,7 @@ export async function getImageOverrides(): Promise<Record<string, string>> {
 export async function setImageOverride(key: string, url: string): Promise<void> {
   if (!isDbConfigured()) return;
   await ensureSchema();
-  await sql`
+  await pool().sql`
     INSERT INTO image_overrides (key, url, updated_at)
     VALUES (${key}, ${url}, now())
     ON CONFLICT (key) DO UPDATE SET url = EXCLUDED.url, updated_at = now();
