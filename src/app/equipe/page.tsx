@@ -19,8 +19,8 @@ export default function EquipePage() {
       <Section className="bg-surface">
         <SectionTitle
           kicker="Notre équipe"
-          title="Des praticiens spécialisés, à votre écoute"
-          subtitle="Une équipe pluridisciplinaire qui allie expertise médicale et approche humaine. Les profils détaillés seront complétés prochainement."
+          title="Une équipe engagée, à votre écoute"
+          subtitle="Médecins, soignants et personnel d'accueil : une équipe pluridisciplinaire au service de votre santé. Les photos seront ajoutées prochainement."
         />
       </Section>
 

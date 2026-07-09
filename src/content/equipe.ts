@@ -1,50 +1,58 @@
-// TODO content : noms / fonctions / parcours / photos à fournir par le centre.
-// Placeholders propres en attendant. La photo pointe vers /public/team/.
+// Team of Kinesis Réadaptation. Real names & positions provided by the center.
+// Photos and bios to come — cards fall back to an elegant placeholder meanwhile.
+// TODO content: photos → public/team/ ; short bios if desired.
+//
+// Surnames are kept in capitals (Francophone convention). Job titles are written
+// in sentence case to match the site's editorial style.
 
 export type Practitioner = {
   name: string;
   role: string;
-  specialty: string;
-  photo: string;
+  specialty?: string;
+  photo?: string;
   bio?: string;
 };
 
 export const team: Practitioner[] = [
   {
-    name: "Dr Diack",
-    role: "Médecin — Direction médicale",
-    specialty: "Médecine vasculaire",
-    photo: "/team/placeholder.svg",
-    bio: "Parcours et titres à compléter par le centre.", // TODO content
+    name: "Dr Bouna DIACK",
+    role: "Directeur général",
+    specialty: "Cardiologue",
   },
   {
-    name: "À compléter",
-    role: "Cardiologue",
-    specialty: "Cardiologie",
-    photo: "/team/placeholder.svg",
+    name: "Ami NDAO BA",
+    role: "Directrice générale adjointe",
   },
   {
-    name: "À compléter",
-    role: "Médecin physique & réadaptation",
-    specialty: "Médecine physique & réadaptation",
-    photo: "/team/placeholder.svg",
+    name: "Clémence Baraye MANKA",
+    role: "Surveillante générale",
   },
   {
-    name: "À compléter",
-    role: "Kinésithérapeute",
-    specialty: "Kinésithérapie",
-    photo: "/team/placeholder.svg",
+    name: "Maguette SÈNE",
+    role: "Infirmière",
   },
   {
-    name: "À compléter",
-    role: "Neurologue",
-    specialty: "Neurologie (EMG, EEG)",
-    photo: "/team/placeholder.svg",
+    name: "Ndéye Dieumbe MBAYE",
+    role: "Technicienne de laboratoire",
   },
   {
-    name: "À compléter",
-    role: "Psychologue",
-    specialty: "Psychologie",
-    photo: "/team/placeholder.svg",
+    name: "Khady Ngom DIOP",
+    role: "Intendante générale",
+  },
+  {
+    name: "Christine Amina ÉPÉE KUOUH",
+    role: "Secrétaire",
+  },
+  {
+    name: "Ndéye Bineta NDIAYE",
+    role: "Secrétaire",
+  },
+  {
+    name: "Oumy Khairy Diagne FALL",
+    role: "Caissière",
+  },
+  {
+    name: "Oumar BAH",
+    role: "Garçon de salle",
   },
 ];
