@@ -65,6 +65,13 @@ export function ensureSchema(): Promise<void> {
           updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
         );
       `;
+      await pool().sql`
+        CREATE TABLE IF NOT EXISTS settings (
+          key TEXT PRIMARY KEY,
+          value JSONB NOT NULL,
+          updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+        );
+      `;
     })().catch((err) => {
       // Reset so a later call can retry; surface in logs.
       schemaPromise = null;
@@ -201,5 +208,45 @@ export async function setImageOverride(key: string, url: string): Promise<void> 
     INSERT INTO image_overrides (key, url, updated_at)
     VALUES (${key}, ${url}, now())
     ON CONFLICT (key) DO UPDATE SET url = EXCLUDED.url, updated_at = now();
+  `;
+}
+
+// ---- Team (stored as a single JSON document in `settings`) ----------------
+
+export type TeamMember = {
+  name: string;
+  role: string;
+  specialty?: string;
+  bio?: string;
+  photo?: string;
+};
+
+export async function getTeamOverride(): Promise<TeamMember[] | null> {
+  if (!isDbConfigured()) return null;
+  try {
+    await ensureSchema();
+    const { rows } = await pool().sql<{ value: unknown }>`
+      SELECT value FROM settings WHERE key = 'team';
+    `;
+    if (!rows.length) return null;
+    const v = rows[0].value;
+    if (Array.isArray(v)) return v as TeamMember[];
+    if (typeof v === "string") {
+      const parsed = JSON.parse(v);
+      return Array.isArray(parsed) ? (parsed as TeamMember[]) : null;
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+export async function setTeamOverride(members: TeamMember[]): Promise<void> {
+  if (!isDbConfigured()) return;
+  await ensureSchema();
+  await pool().sql`
+    INSERT INTO settings (key, value, updated_at)
+    VALUES ('team', ${JSON.stringify(members)}::jsonb, now())
+    ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value, updated_at = now();
   `;
 }

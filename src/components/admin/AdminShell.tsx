@@ -7,6 +7,7 @@ import { useRouter, usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   FileText,
+  Users,
   Inbox,
   ImageIcon,
   LogOut,
@@ -16,6 +17,7 @@ import {
 const nav = [
   { href: "/admin", label: "Tableau de bord", icon: LayoutDashboard, exact: true },
   { href: "/admin/contenu", label: "Contenu", icon: FileText },
+  { href: "/admin/equipe", label: "Équipe", icon: Users },
   { href: "/admin/reservations", label: "Réservations & contacts", icon: Inbox },
   { href: "/admin/images", label: "Images", icon: ImageIcon },
 ];

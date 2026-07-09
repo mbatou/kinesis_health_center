@@ -4,7 +4,13 @@ import { poles as polesDefaults } from "@/content/specialites";
 import { centre as centreDefaults } from "@/content/centre";
 import { director as directorDefaults } from "@/content/director";
 import { images as imageDefaults } from "@/content/images";
-import { getContentOverrides, getImageOverrides } from "./db";
+import { team as teamDefaults } from "@/content/equipe";
+import {
+  getContentOverrides,
+  getImageOverrides,
+  getTeamOverride,
+  type TeamMember,
+} from "./db";
 
 // Single source of truth for editable copy. The admin form and the public site
 // both read from this registry, so they can never drift. Defaults come from the
@@ -180,3 +186,17 @@ export async function getSiteImages() {
 
 export const imageKeys = Object.keys(imageDefaults) as ImageKey[];
 export const imageMeta = imageDefaults;
+
+// ---- Team ----------------------------------------------------------------
+
+export type { TeamMember } from "./db";
+
+const loadTeam = cache(async () => getTeamOverride());
+
+// DB team (if set) fully replaces the static default team; else the default.
+export async function getTeamContent(): Promise<TeamMember[]> {
+  const override = await loadTeam();
+  return override ?? (teamDefaults as TeamMember[]);
+}
+
+export const defaultTeam = teamDefaults as TeamMember[];

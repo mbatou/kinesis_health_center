@@ -4,7 +4,7 @@ import SectionTitle from "@/components/SectionTitle";
 import TeamCard from "@/components/TeamCard";
 import CtaBand from "@/components/CtaBand";
 import Reveal from "@/components/Reveal";
-import { team } from "@/content/equipe";
+import { getTeamContent } from "@/lib/editable";
 
 export const metadata: Metadata = {
   title: "Notre équipe",
@@ -13,7 +13,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/equipe" },
 };
 
-export default function EquipePage() {
+export default async function EquipePage() {
+  const team = await getTeamContent();
   return (
     <>
       <Section className="bg-surface">

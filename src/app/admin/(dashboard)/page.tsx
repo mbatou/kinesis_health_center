@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FileText, Inbox, ImageIcon, AlertTriangle, CheckCircle2 } from "lucide-react";
+import { FileText, Users, Inbox, ImageIcon, AlertTriangle, CheckCircle2 } from "lucide-react";
 import { countNewSubmissions, isDbConfigured } from "@/lib/db";
 import { isBlobConfigured } from "@/lib/blob";
 
@@ -16,6 +16,12 @@ export default async function AdminHome() {
       icon: FileText,
       title: "Contenu",
       desc: "Modifier les textes du site (accueil, pôles, le mot du directeur, coordonnées).",
+    },
+    {
+      href: "/admin/equipe",
+      icon: Users,
+      title: "Équipe",
+      desc: "Ajouter, modifier, réorganiser ou retirer les membres et leurs photos.",
     },
     {
       href: "/admin/reservations",
