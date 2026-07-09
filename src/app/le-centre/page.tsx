@@ -4,9 +4,9 @@ import Section from "@/components/Section";
 import SectionTitle from "@/components/SectionTitle";
 import EcgDivider from "@/components/EcgDivider";
 import CtaBand from "@/components/CtaBand";
-import MediaFrame from "@/components/MediaFrame";
+import Carousel from "@/components/Carousel";
 import Reveal from "@/components/Reveal";
-import { getCentreContent, getSiteImages } from "@/lib/editable";
+import { getCentreContent, getGalleryContent } from "@/lib/editable";
 
 export const metadata: Metadata = {
   title: "Le centre",
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default async function LeCentrePage() {
   const centre = await getCentreContent();
-  const images = await getSiteImages();
+  const gallery = await getGalleryContent();
   return (
     <>
       {/* Intro */}
@@ -95,23 +95,23 @@ export default async function LeCentrePage() {
         </div>
       </Section>
 
-      {/* Premises gallery */}
-      <Section>
-        <Reveal>
-          <SectionTitle
-            kicker="Nos locaux"
-            title="Un cadre confortable et apaisant"
-            subtitle="Espace d'accueil, plateau de réadaptation et bassin de balnéothérapie."
-          />
-        </Reveal>
-        <div className="mt-10 grid gap-5 sm:grid-cols-3">
-          {[images.accueil, images.readapt, images.balneo].map((img, i) => (
-            <Reveal key={img.src} delay={i * 0.06}>
-              <MediaFrame src={img.src} alt={img.alt} ratio="aspect-[4/3]" />
-            </Reveal>
-          ))}
-        </div>
-      </Section>
+      {/* Premises gallery — moving carousel */}
+      {gallery.length > 0 && (
+        <Section>
+          <Reveal>
+            <SectionTitle
+              kicker="Nos locaux"
+              title="Un cadre confortable et apaisant"
+              subtitle="Espace d'accueil, plateaux de soin, bassin de balnéothérapie : découvrez le centre en images."
+            />
+          </Reveal>
+          <Reveal delay={0.05}>
+            <div className="mt-10">
+              <Carousel items={gallery} />
+            </div>
+          </Reveal>
+        </Section>
+      )}
 
       <CtaBand />
     </>

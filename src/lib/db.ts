@@ -242,11 +242,32 @@ export async function getTeamOverride(): Promise<TeamMember[] | null> {
 }
 
 export async function setTeamOverride(members: TeamMember[]): Promise<void> {
+  await setJsonSetting("team", members);
+}
+
+// Generic JSON settings (used for team, gallery, …).
+export async function getJsonSetting<T>(key: string): Promise<T | null> {
+  if (!isDbConfigured()) return null;
+  try {
+    await ensureSchema();
+    const { rows } = await pool().sql<{ value: unknown }>`
+      SELECT value FROM settings WHERE key = ${key};
+    `;
+    if (!rows.length) return null;
+    const v = rows[0].value;
+    const parsed = typeof v === "string" ? JSON.parse(v) : v;
+    return parsed as T;
+  } catch {
+    return null;
+  }
+}
+
+export async function setJsonSetting(key: string, value: unknown): Promise<void> {
   if (!isDbConfigured()) return;
   await ensureSchema();
   await pool().sql`
     INSERT INTO settings (key, value, updated_at)
-    VALUES ('team', ${JSON.stringify(members)}::jsonb, now())
+    VALUES (${key}, ${JSON.stringify(value)}::jsonb, now())
     ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value, updated_at = now();
   `;
 }

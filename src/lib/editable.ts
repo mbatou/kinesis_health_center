@@ -9,6 +9,7 @@ import {
   getContentOverrides,
   getImageOverrides,
   getTeamOverride,
+  getJsonSetting,
   type TeamMember,
 } from "./db";
 
@@ -186,6 +187,28 @@ export async function getSiteImages() {
 
 export const imageKeys = Object.keys(imageDefaults) as ImageKey[];
 export const imageMeta = imageDefaults;
+
+// Fixed single-slot images managed one-by-one in the Images admin. The former
+// "locaux" images (accueil/readapt/balneo) now live in the gallery carousel.
+export const fixedImageKeys: ImageKey[] = ["hero", "director"];
+
+// ---- Gallery carousel ("Nos locaux") -------------------------------------
+
+export type GalleryItem = { url: string; alt?: string };
+
+export const defaultGallery: GalleryItem[] = [
+  { url: imageDefaults.accueil.src, alt: imageDefaults.accueil.alt },
+  { url: imageDefaults.readapt.src, alt: imageDefaults.readapt.alt },
+  { url: imageDefaults.balneo.src, alt: imageDefaults.balneo.alt },
+];
+
+const loadGallery = cache(async () => getJsonSetting<GalleryItem[]>("gallery"));
+
+// DB gallery (if set) replaces the default; an empty list hides the section.
+export async function getGalleryContent(): Promise<GalleryItem[]> {
+  const override = await loadGallery();
+  return override ?? defaultGallery;
+}
 
 // ---- Team ----------------------------------------------------------------
 

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
-import { imageKeys, imageMeta, type ImageKey } from "@/lib/editable";
+import { fixedImageKeys, imageMeta, type ImageKey } from "@/lib/editable";
 import { getImageOverrides, setImageOverride, isDbConfigured } from "@/lib/db";
 import { uploadImage, isBlobConfigured } from "@/lib/blob";
 
@@ -8,7 +8,7 @@ const PUBLIC_PATHS = ["/", "/le-centre", "/specialites", "/contact"];
 
 export async function GET() {
   const overrides = await getImageOverrides();
-  const images = imageKeys.map((key) => ({
+  const images = fixedImageKeys.map((key) => ({
     key,
     alt: imageMeta[key].alt,
     defaultSrc: imageMeta[key].src,
@@ -44,7 +44,7 @@ export async function POST(request: Request) {
   const key = String(form.get("key") || "");
   const file = form.get("file");
 
-  if (!imageKeys.includes(key as ImageKey)) {
+  if (!fixedImageKeys.includes(key as ImageKey)) {
     return NextResponse.json({ ok: false, error: "Image inconnue." }, { status: 400 });
   }
   if (!(file instanceof File) || file.size === 0) {

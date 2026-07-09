@@ -10,6 +10,7 @@ import {
   Users,
   Inbox,
   ImageIcon,
+  GalleryHorizontalEnd,
   LogOut,
   ExternalLink,
 } from "lucide-react";
@@ -20,6 +21,7 @@ const nav = [
   { href: "/admin/equipe", label: "Équipe", icon: Users },
   { href: "/admin/reservations", label: "Réservations & contacts", icon: Inbox },
   { href: "/admin/images", label: "Images", icon: ImageIcon },
+  { href: "/admin/galerie", label: "Galerie (carrousel)", icon: GalleryHorizontalEnd },
 ];
 
 export default function AdminShell({ children }: { children: ReactNode }) {

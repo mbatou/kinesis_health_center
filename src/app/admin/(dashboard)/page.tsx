@@ -1,5 +1,13 @@
 import Link from "next/link";
-import { FileText, Users, Inbox, ImageIcon, AlertTriangle, CheckCircle2 } from "lucide-react";
+import {
+  FileText,
+  Users,
+  Inbox,
+  ImageIcon,
+  GalleryHorizontalEnd,
+  AlertTriangle,
+  CheckCircle2,
+} from "lucide-react";
 import { countNewSubmissions, isDbConfigured } from "@/lib/db";
 import { isBlobConfigured } from "@/lib/blob";
 
@@ -35,7 +43,13 @@ export default async function AdminHome() {
       href: "/admin/images",
       icon: ImageIcon,
       title: "Images",
-      desc: "Remplacer les photos du site (accueil, locaux, balnéothérapie, directeur).",
+      desc: "Remplacer les photos fixes du site (accueil et directeur).",
+    },
+    {
+      href: "/admin/galerie",
+      icon: GalleryHorizontalEnd,
+      title: "Galerie (carrousel)",
+      desc: "Gérer les photos du carrousel « Le centre » : ajouter, réordonner, retirer.",
     },
   ];
 
